@@ -4,7 +4,8 @@ public:
         int m = mat.size();
         int n = mat[0].size();
         
-        // Step 1: Build 2D prefix sum (1-indexed to avoid out-of-bounds checks)
+      
+      
         vector<vector<int>> pref(m + 1, vector<int>(n + 1, 0));
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
