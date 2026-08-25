@@ -19,7 +19,8 @@ public:
             return 0;
         int lft = solve(root->left);
         int rght = solve(root->right);
-      
+                  v.push_back(lft);
+                  v.push_back(rght);
 
         v.push_back(root->val + lft + rght);
         return root->val + lft + rght;
