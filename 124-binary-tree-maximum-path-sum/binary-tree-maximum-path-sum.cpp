@@ -1,31 +1,25 @@
 class Solution {
 public:
-    int maxsum;
+    int maxSum;
     int solve(TreeNode* root){
         if(root == NULL){
         return 0;
         }
-
-        int left_side_se = solve(root->left);
-        int right_side_se = solve(root->right);
-
-        maxsum=max(maxsum ,  left_side_se + right_side_se + root->val);
-
-        int mx= max( right_side_se  ,left_side_se);
-
-        int abhi_tak_max= max(root->val , root->val + mx);
-
-         maxsum=max(maxsum ,  abhi_tak_max);
-
-        return  abhi_tak_max;
+        int l  = solve(root->left);
+        int  r = solve(root->right);
         
-        
-        
+        int neccheager_mil_gya = l+r+root->val;
+        int koi_ek_acha = max(l,r)+root->val;
+        int only_root_accha = root->val;
+
+        maxSum = max({maxSum,koi_ek_acha,neccheager_mil_gya,only_root_accha});
+
+        return max(koi_ek_acha,only_root_accha);
     }
 
     int maxPathSum(TreeNode* root) {
-        maxsum = INT_MIN;
+        maxSum = INT_MIN;
         solve(root);
-        return maxsum; 
+        return maxSum; 
     }
 };
