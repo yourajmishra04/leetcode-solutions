@@ -5,7 +5,7 @@ public:
         int n = nums.size();
         for (int i = 0; i < n; i++)
             v.push_back({nums[i], i});
-                     vector<int>ans(n);
+        vector<int> ans(n);
         sort(v.begin(), v.end());
         int i = 0, j;
         while (i < n) {
@@ -19,9 +19,10 @@ public:
                 pos.push_back(v[j][1]);
                 j++;
             }
-            sort(pos.begin(),pos.end());
-            for(int i=0;i<pos.size();i++) ans[pos[i]]=ele[i];
-            i=j;
+            sort(pos.begin(), pos.end());
+            for (int i = 0; i < pos.size(); i++)
+                ans[pos[i]] = ele[i];
+            i = j;
         }
         return ans;
     }
