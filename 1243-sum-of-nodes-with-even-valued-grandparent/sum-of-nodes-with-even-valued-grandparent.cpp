@@ -12,14 +12,14 @@
 class Solution {
 public:
     int ans=0;
-    void solve(TreeNode* root, int level1 , int level2){
+    void solve(TreeNode* root, int par , int gpar){
 
         if(root == NULL) return ;
 
-        if(level2 % 2==0) ans+=root->val;
+        if(gpar % 2==0) ans+=root->val;
          
-         solve(root->left ,  root->val, level1);
-          solve(root->right , root->val,level1);
+         solve(root->left ,  root->val, par);
+          solve(root->right , root->val,par);
 
     }
     int sumEvenGrandparent(TreeNode* root) {
