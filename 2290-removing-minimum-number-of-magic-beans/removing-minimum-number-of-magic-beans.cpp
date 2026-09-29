@@ -2,8 +2,8 @@ class Solution {
 public:
     long long minimumRemoval(vector<int>& b) {
         sort(b.begin(),b.end());
-       long long ans=LLONG_MAX;
-        long long tot=0,n=b.size(),curr=0 , prev=0;
+       long long ans=LLONG_MAX,
+      tot=0,n=b.size(),curr=0 , prev=0;
         for(int x : b) tot+=x;
 
         for(int i=0;i<n;i++){
