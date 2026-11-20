@@ -1,40 +1,32 @@
 class Solution {
 public:
-     vector<bool> flg; 
+    vector<vector<int>> v;
+    int N;
+    int ans = 0;
+    vector<bool> vis;
+    int solve(vector<bool>& hasApple, int node) {
 
-     int solve(vector<vector<int>>& mat , int node,int par){
-
-             int n=mat.size();
-
-             int ans=0;
-            
-             
-             int l;
-             
-             for(auto it : mat[node]){
-                if(it==par) continue;
-              l=solve(mat,it,node);
-              if(l>0 || flg[it])
-              ans+= l+2 ;
-
-             }
-              return ans;
-
-
-
-     }
-
-
-    int minTime(int n, vector<vector<int>>& edges, vector<bool>& hasApple) {
-        vector<vector<int>>mat(n);
-        flg=hasApple;
-
-        for(auto it : edges){
-            mat[it[0]].push_back(it[1]);
-            
-            mat[it[1]].push_back(it[0]);
+        int temp = 0;
+        
+        vis[node] = 1;
+        
+        for (int x : v[node]) {
+            if (!vis[x])
+                temp += solve(hasApple, x);
         }
-
-        return solve(mat,0,-1);
+          if(temp>0 || hasApple[node])  if(node>0)temp+=2;
+        return temp;
+    }
+    int minTime(int n, vector<vector<int>>& edges, vector<bool>& hasApple) {
+        N = n;
+        v.resize(n);
+        vis.assign(n, 0);
+        for (auto it : edges) {
+            int x = it[0], y = it[1];
+            v[x].push_back(y);
+            v[y].push_back(x);
+        }
+        ans = solve(hasApple, 0);
+        return ans;
     }
 };
